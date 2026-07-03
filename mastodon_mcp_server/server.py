@@ -412,7 +412,8 @@ def status_context(status_id: str) -> str:
 
 @mcp.tool()
 def status_post(
-    content: str,
+    status: Optional[str] = None,
+    content: Optional[str] = None,
     visibility: str = "public",
     spoiler_text: Optional[str] = None,
     in_reply_to_id: Optional[str] = None,
@@ -423,7 +424,8 @@ def status_post(
     """Post a new status (toot).
 
     Args:
-        content: Text content of the status. Supports HTML or plain text.
+        status: Text content of the status (preferred argument name).
+        content: Backward-compatible alias for status text.
         visibility: 'public', 'unlisted', 'private', or 'direct' (default 'public').
         spoiler_text: Content warning / spoiler text shown before the status.
         in_reply_to_id: Numeric ID of the status to reply to.
@@ -435,9 +437,13 @@ def status_post(
         str: JSON with the newly created status.
     """
     validate_write()
+    text = status if status is not None else content
+    if not text:
+        raise ValueError("Either 'status' or 'content' must be provided")
+
     client = get_client()
     return fmt(client.status_post(
-        content,
+        text,
         visibility=visibility,
         spoiler_text=spoiler_text,
         in_reply_to_id=in_reply_to_id,
@@ -656,10 +662,17 @@ def search(
         str: JSON with 'accounts', 'statuses', and 'hashtags' lists.
     """
     client = get_client()
-    kwargs: Dict[str, Any] = {"q": query, "resolve": resolve, "limit": limit}
+    kwargs: Dict[str, Any] = {"q": query, "resolve": resolve}
     if search_type:
         kwargs["result_type"] = search_type
-    return fmt(client.search(**kwargs))
+    # Mastodon.py's search()/search_v2() has no `limit` parameter, even
+    # though the underlying /api/v2/search endpoint accepts one, so results
+    # are truncated client-side instead of being forwarded to the library.
+    results = client.search(**kwargs)
+    for category in ("accounts", "statuses", "hashtags"):
+        if category in results:
+            results[category] = results[category][:limit]
+    return fmt(results)
 
 
 # ─── TRENDING ─────────────────────────────────────────────────────────────────

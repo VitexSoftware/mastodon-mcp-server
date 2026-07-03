@@ -294,6 +294,26 @@ python3 scripts/test_server.py
 
 The server uses a bundled stdlib-only MCP implementation (`mastodon_mcp_server/_mcp.py`) so it has **no dependency on `python3-fastmcp`** or its deep dependency chain. This makes packaging for Debian/Ubuntu straightforward. The implementation is compatible with the FastMCP decorator API (`@mcp.tool()`).
 
+## Citation
+
+This project is built on [Mastodon.py](https://github.com/halcy/Mastodon.py). If you use it in academic work, please cite:
+
+```bibtex
+@article{Diener2026,
+  author  = {Diener, Lorenz and Delcourt, Corentin},
+  title   = {Mastodon.py: A Python library for the Mastodon API},
+  journal = {Journal of Open Source Software},
+  year    = {2026},
+  volume  = {11},
+  number  = {120},
+  pages   = {8946},
+  doi     = {10.21105/joss.08946},
+  url     = {https://doi.org/10.21105/joss.08946}
+}
+```
+
+See [Mastodon.py's CITATION.cff](https://github.com/halcy/Mastodon.py/blob/master/CITATION.cff) for details.
+
 ## License
 
 MIT — Vítězslav Dvořák <info@vitexsoftware.cz>
