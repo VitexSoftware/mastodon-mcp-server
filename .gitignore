@@ -9,6 +9,8 @@ build/
 uv.lock
 .pybuild/
 .claude/
+.clinerules
+.DS_Store
 debian/debhelper-build-stamp
 debian/mastodon-mcp-server.postinst.debhelper
 debian/mastodon-mcp-server.prerm.debhelper

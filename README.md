@@ -9,7 +9,7 @@ A comprehensive MCP (Model Context Protocol) server for Mastodon integration. En
 ## Features
 
 - **Timelines**: home, local, public, hashtag
-- **Statuses**: post, delete, favourite, reblog, bookmark
+- **Statuses**: post, edit, delete, favourite, reblog, bookmark, pin, mute
 - **Accounts**: follow, unfollow, block, mute, relationships, profile update
 - **Notifications**: read, dismiss individual or all
 - **Search**: accounts, statuses, hashtags
@@ -33,13 +33,26 @@ apt install mastodon-mcp-server
 ```bash
 pip install mastodon-mcp-server
 ```
+### uv
+
+```bash
+uv tool install mastodon-mcp-server
+```
 
 ### From source
+
+#### pip
 
 ```bash
 git clone https://github.com/VitexSoftware/mastodon-mcp-server.git
 cd mastodon-mcp-server
 pip install -e .
+```
+
+#### uv
+
+```bash
+uv tool install .
 ```
 
 ## Configuration
@@ -134,6 +147,56 @@ claude mcp add --scope user mastodon /usr/bin/mastodon-mcp \
 }
 ```
 
+### Hermes (CLI)
+
+If installed as a binary package
+
+```bash
+hermes mcp add mastodon --command /usr/bin/mastodon-mcp \
+  --env MASTODON_INSTANCE=mastodon.social \
+  --env MASTODON_ACCESS_TOKEN=your-token-here
+```
+
+If installed from source and for development purpose
+
+```bash
+hermes mcp add mastodon --command /fullpath/mastodon_mcp_server/.venv/bin/mastodon-mcp \
+  --env MASTODON_INSTANCE=mastodon.social \
+  --env MASTODON_ACCESS_TOKEN=your-token-here
+```
+
+or directly edit ~/.hermes/config.yaml and add the following to your configuration YAML in the section mcp_servers
+
+```yaml
+mcp_servers:
+  mastodon:
+    command: /usr/bin/mastodon-mcp
+    args: []
+    env:
+      MASTODON_INSTANCE: "https://mastodon.social"
+      MASTODON_ACCESS_TOKEN: "your-token-here"
+    enabled: true
+```
+
+### Hermes Desktop
+
+Add in the Settings > MCP a New server
+
+* **Name**: mastodon-mcp
+
+* **Server JSON**:
+```json
+{
+  "command": "/usr/bin/mastodon-mcp",
+  "args": [],
+  "env": {
+    "MASTODON_INSTANCE": "https://mastodon.social",
+    "MASTODON_ACCESS_TOKEN": "your-token-here"
+  },
+  "disabled": false
+}
+```
+
 ### HTTP transport (any MCP client)
 
 ```bash
@@ -175,6 +238,7 @@ Environment variables:
 | Tool                                      | Description                                 |
 | ----------------------------------------- | ------------------------------------------- |
 | `account_verify`                          | Own profile                                 |
+| `account_lookup`                          | Account by handle (e.g. @user@instance)      |
 | `account_get`                             | Account by numeric ID                       |
 | `account_search`                          | Search accounts by username or display name |
 | `account_statuses`                        | Posts by an account                         |
@@ -201,11 +265,17 @@ Environment variables:
 | `status_get`                                   | Single status by ID                                       |
 | `status_context`                               | Thread ancestors and descendants                          |
 | `status_post`                                  | Post a new status (supports CW, visibility, media, polls) |
+| `status_update`                                | Edit an existing status                                   |
+| `status_history`                               | Get edit history of a status                               |
+| `status_source`                                | Plain-text source for editing                              |
+| `status_translate`                             | Translate a status to another language                      |
 | `status_delete`                                | Delete own status                                         |
 | `status_favourite` / `status_unfavourite`      | Favourite management                                      |
 | `status_reblog` / `status_unreblog`            | Boost management                                          |
 | `status_bookmark` / `status_unbookmark`        | Bookmark management                                       |
 | `status_favourited_by` / `status_reblogged_by` | Who engaged with a status                                 |
+| `status_pin` / `status_unpin`                  | Pin status to profile                                      |
+| `status_mute` / `status_unmute`                | Mute specific statuses                                    |
 
 ### Notifications
 
@@ -216,6 +286,7 @@ Environment variables:
 | `notifications_clear`  | Clear all notifications                 |
 
 ### Search & Discovery
+- **Tagging**: follow, unfollow hashtags
 
 | Tool                | Description                             |
 | ------------------- | --------------------------------------- |
@@ -224,6 +295,8 @@ Environment variables:
 | `trending_statuses` | Trending statuses                       |
 | `trending_links`    | Trending links/articles                 |
 | `directory`         | Browse the instance profile directory   |
+| `tag_follow`        | Follow a hashtag                         |
+| `tag_unfollow`      | Unfollow a hashtag                       |
 
 ### Collections
 
@@ -262,21 +335,19 @@ Environment variables:
 | ------------ | ----------------------------------- |
 | `media_post` | Upload image/video/audio attachment |
 
-## Future Tools (Mastodon.py ≥ 2.x / Mastodon server ≥ 3.5)
+(removed)
 
-The following tools are implemented but commented out in `server.py`. Uncomment them when your distribution ships `python3-mastodon >= 2.0.1` (already available on Debian 13/trixie):
+## Documentation
 
-| Tool                         | Requirement                      |
-| ---------------------------- | -------------------------------- |
-| `status_update`              | Edit a status (server 3.5+)      |
-| `status_history`             | Edit history (server 3.5+)       |
-| `status_source`              | Plain-text source for editing    |
-| `status_translate`           | Translate a status (server 4.0+) |
-| `conversations`              | Direct-message conversations     |
-| `scheduled_statuses`         | List scheduled posts             |
-| `scheduled_status_update`    | Reschedule a post                |
-| `scheduled_status_delete`    | Cancel a scheduled post          |
-| `notifications_unread_count` | Unread notification count        |
+This project uses `pdoc3` to generate self-hosted API documentation from the source code.
+
+The documentation is automatically deployed to [GitHub Pages](https://Opendojo.github.io/mastodon-mcp-server/).
+
+To regenerate the documentation locally:
+```bash
+./scripts/generate_docs.sh
+```
+The generated HTML files are maintained in the `docs/` directory.
 
 ## Testing
 
@@ -317,3 +388,6 @@ See [Mastodon.py's CITATION.cff](https://github.com/halcy/Mastodon.py/blob/maste
 ## License
 
 MIT — Vítězslav Dvořák <info@vitexsoftware.cz>
+
+---
+For AI agents contributing to this project, please refer to [AGENTS.md](AGENTS.md) for coding standards and development workflow.

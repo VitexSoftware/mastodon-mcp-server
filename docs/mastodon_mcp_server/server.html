@@ -1,0 +1,2791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>mastodon_mcp_server.server API documentation</title>
+<meta name="description" content="Mastodon MCP Server - Integration with Mastodon API using Mastodon.py …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mastodon_mcp_server.server</code></h1>
+</header>
+<section id="section-intro">
+<p>Mastodon MCP Server - Integration with Mastodon API using Mastodon.py</p>
+<p>This server provides access to Mastodon social network functionality through
+the Model Context Protocol (MCP), enabling AI assistants and other tools to
+interact with Mastodon instances.</p>
+<p>Author: Vítězslav Dvořák
+License: MIT</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="mastodon_mcp_server.server.account_block"><code class="name flex">
+<span>def <span class="ident">account_block</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_block(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Block an account.
+
+    Args:
+        account_id: Numeric account ID to block.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_block(account_id))</code></pre>
+</details>
+<div class="desc"><p>Block an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to block.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_follow"><code class="name flex">
+<span>def <span class="ident">account_follow</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_follow(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Follow an account.
+
+    Args:
+        account_id: Numeric account ID to follow.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_follow(account_id))</code></pre>
+</details>
+<div class="desc"><p>Follow an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to follow.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_followers"><code class="name flex">
+<span>def <span class="ident">account_followers</span></span>(<span>account_id: str, limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_followers(account_id: str, limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get followers of an account.
+
+    Args:
+        account_id: Numeric account ID.
+        limit: Maximum number of results (default 40, max 80).
+
+    Returns:
+        str: JSON list of follower accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_followers(account_id, limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get followers of an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID.</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 40, max 80).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of follower accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_following"><code class="name flex">
+<span>def <span class="ident">account_following</span></span>(<span>account_id: str, limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_following(account_id: str, limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get accounts that a given account follows.
+
+    Args:
+        account_id: Numeric account ID.
+        limit: Maximum number of results (default 40, max 80).
+
+    Returns:
+        str: JSON list of followed accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_following(account_id, limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get accounts that a given account follows.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID.</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 40, max 80).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of followed accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_get"><code class="name flex">
+<span>def <span class="ident">account_get</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_get(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Get a Mastodon account by its numeric ID.
+
+    Args:
+        account_id: Numeric account ID.
+
+    Returns:
+        str: JSON with account details.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account(account_id))</code></pre>
+</details>
+<div class="desc"><p>Get a Mastodon account by its numeric ID.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with account details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_lookup"><code class="name flex">
+<span>def <span class="ident">account_lookup</span></span>(<span>acct: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_lookup(acct: str) -&gt; str:
+    &#34;&#34;&#34;Look up a Mastodon account by its handle (e.g., &#39;@user@instance&#39;).
+
+    Args:
+        acct: Account handle.
+
+    Returns:
+        str: JSON with account details.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_lookup(acct))</code></pre>
+</details>
+<div class="desc"><p>Look up a Mastodon account by its handle (e.g., '@user@instance').</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>acct</code></strong></dt>
+<dd>Account handle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with account details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_mute"><code class="name flex">
+<span>def <span class="ident">account_mute</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_mute(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Mute an account.
+
+    Args:
+        account_id: Numeric account ID to mute.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_mute(account_id))</code></pre>
+</details>
+<div class="desc"><p>Mute an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to mute.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_relationships"><code class="name flex">
+<span>def <span class="ident">account_relationships</span></span>(<span>account_ids: List[str]) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_relationships(account_ids: List[str]) -&gt; str:
+    &#34;&#34;&#34;Get the authenticated user&#39;s relationship to one or more accounts.
+
+    Args:
+        account_ids: List of numeric account IDs.
+
+    Returns:
+        str: JSON list of relationship objects.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_relationships(account_ids))</code></pre>
+</details>
+<div class="desc"><p>Get the authenticated user's relationship to one or more accounts.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_ids</code></strong></dt>
+<dd>List of numeric account IDs.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of relationship objects.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_search"><code class="name flex">
+<span>def <span class="ident">account_search</span></span>(<span>query: str, limit: int = 10, resolve: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_search(query: str, limit: int = 10, resolve: bool = False) -&gt; str:
+    &#34;&#34;&#34;Search for accounts by username or display name.
+
+    Args:
+        query: Search string (username or display name).
+        limit: Maximum number of results (default 10, max 80).
+        resolve: Whether to resolve non-local accounts (default False).
+
+    Returns:
+        str: JSON list of matching accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_search(query, limit=limit, resolve=resolve))</code></pre>
+</details>
+<div class="desc"><p>Search for accounts by username or display name.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>query</code></strong></dt>
+<dd>Search string (username or display name).</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 10, max 80).</dd>
+<dt><strong><code>resolve</code></strong></dt>
+<dd>Whether to resolve non-local accounts (default False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of matching accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_statuses"><code class="name flex">
+<span>def <span class="ident">account_statuses</span></span>(<span>account_id: str,<br>limit: int = 20,<br>only_media: bool = False,<br>exclude_replies: bool = False,<br>exclude_reblogs: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_statuses(
+    account_id: str,
+    limit: int = 20,
+    only_media: bool = False,
+    exclude_replies: bool = False,
+    exclude_reblogs: bool = False,
+) -&gt; str:
+    &#34;&#34;&#34;Get statuses posted by a specific account.
+
+    Args:
+        account_id: Numeric account ID.
+        limit: Maximum number of results (default 20, max 40).
+        only_media: Only return statuses with media (default False).
+        exclude_replies: Exclude replies (default False).
+        exclude_reblogs: Exclude reblogs (default False).
+
+    Returns:
+        str: JSON list of statuses.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_statuses(
+        account_id,
+        limit=limit,
+        only_media=only_media,
+        exclude_replies=exclude_replies,
+        exclude_reblogs=exclude_reblogs,
+    ))</code></pre>
+</details>
+<div class="desc"><p>Get statuses posted by a specific account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID.</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 20, max 40).</dd>
+<dt><strong><code>only_media</code></strong></dt>
+<dd>Only return statuses with media (default False).</dd>
+<dt><strong><code>exclude_replies</code></strong></dt>
+<dd>Exclude replies (default False).</dd>
+<dt><strong><code>exclude_reblogs</code></strong></dt>
+<dd>Exclude reblogs (default False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of statuses.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_unblock"><code class="name flex">
+<span>def <span class="ident">account_unblock</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_unblock(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Unblock an account.
+
+    Args:
+        account_id: Numeric account ID to unblock.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_unblock(account_id))</code></pre>
+</details>
+<div class="desc"><p>Unblock an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to unblock.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_unfollow"><code class="name flex">
+<span>def <span class="ident">account_unfollow</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_unfollow(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Unfollow an account.
+
+    Args:
+        account_id: Numeric account ID to unfollow.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_unfollow(account_id))</code></pre>
+</details>
+<div class="desc"><p>Unfollow an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to unfollow.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_unmute"><code class="name flex">
+<span>def <span class="ident">account_unmute</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_unmute(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Unmute an account.
+
+    Args:
+        account_id: Numeric account ID to unmute.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.account_unmute(account_id))</code></pre>
+</details>
+<div class="desc"><p>Unmute an account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID to unmute.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_update"><code class="name flex">
+<span>def <span class="ident">account_update</span></span>(<span>display_name: str | None = None,<br>note: str | None = None,<br>bot: bool | None = None,<br>locked: bool | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_update(
+    display_name: Optional[str] = None,
+    note: Optional[str] = None,
+    bot: Optional[bool] = None,
+    locked: Optional[bool] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Update the authenticated account&#39;s profile.
+
+    Args:
+        display_name: New display name.
+        note: New bio/note (profile description).
+        bot: Mark account as a bot (True/False).
+        locked: Require approval for follow requests (True/False).
+
+    Returns:
+        str: JSON with updated account details.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    kwargs: Dict[str, Any] = {}
+    if display_name is not None:
+        kwargs[&#34;display_name&#34;] = display_name
+    if note is not None:
+        kwargs[&#34;note&#34;] = note
+    if bot is not None:
+        kwargs[&#34;bot&#34;] = bot
+    if locked is not None:
+        kwargs[&#34;locked&#34;] = locked
+    return fmt(client.account_update_credentials(**kwargs))</code></pre>
+</details>
+<div class="desc"><p>Update the authenticated account's profile.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>display_name</code></strong></dt>
+<dd>New display name.</dd>
+<dt><strong><code>note</code></strong></dt>
+<dd>New bio/note (profile description).</dd>
+<dt><strong><code>bot</code></strong></dt>
+<dd>Mark account as a bot (True/False).</dd>
+<dt><strong><code>locked</code></strong></dt>
+<dd>Require approval for follow requests (True/False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with updated account details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.account_verify"><code class="name flex">
+<span>def <span class="ident">account_verify</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def account_verify() -&gt; str:
+    &#34;&#34;&#34;Get the authenticated account&#39;s own profile.
+
+    Returns:
+        str: JSON with account id, username, display_name, followers_count, etc.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.account_verify_credentials())</code></pre>
+</details>
+<div class="desc"><p>Get the authenticated account's own profile.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with account id, username, display_name, followers_count, etc.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.blocks"><code class="name flex">
+<span>def <span class="ident">blocks</span></span>(<span>limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def blocks(limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get accounts blocked by the authenticated account.
+
+    Args:
+        limit: Maximum number of results (default 40).
+
+    Returns:
+        str: JSON list of blocked accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.blocks(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get accounts blocked by the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of blocked accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.bookmarks"><code class="name flex">
+<span>def <span class="ident">bookmarks</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def bookmarks(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get statuses bookmarked by the authenticated account.
+
+    Args:
+        limit: Maximum number of results (default 20, max 40).
+
+    Returns:
+        str: JSON list of statuses.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.bookmarks(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get statuses bookmarked by the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of statuses.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.conversations"><code class="name flex">
+<span>def <span class="ident">conversations</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def conversations(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get direct-message conversations.
+
+    Args:
+        limit: Maximum number of conversations (default 20, max 40).
+
+    Returns:
+        str: JSON list of Conversation objects, each containing the last status
+             and a list of involved accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.conversations(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get direct-message conversations.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of conversations (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of Conversation objects, each containing the last status
+and a list of involved accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.directory"><code class="name flex">
+<span>def <span class="ident">directory</span></span>(<span>limit: int = 20, order: str = 'active', local: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def directory(
+    limit: int = 20,
+    order: str = &#34;active&#34;,
+    local: bool = False,
+) -&gt; str:
+    &#34;&#34;&#34;Browse the profile directory of the instance.
+
+    Args:
+        limit: Maximum number of accounts (default 20, max 80).
+        order: &#39;active&#39; (recently active) or &#39;new&#39; (recently joined).
+        local: Only show local accounts (default False).
+
+    Returns:
+        str: JSON list of account objects.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.directory(limit=limit, order=order, local=local))</code></pre>
+</details>
+<div class="desc"><p>Browse the profile directory of the instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of accounts (default 20, max 80).</dd>
+<dt><strong><code>order</code></strong></dt>
+<dd>'active' (recently active) or 'new' (recently joined).</dd>
+<dt><strong><code>local</code></strong></dt>
+<dd>Only show local accounts (default False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of account objects.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.favourites"><code class="name flex">
+<span>def <span class="ident">favourites</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def favourites(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get statuses favourited by the authenticated account.
+
+    Args:
+        limit: Maximum number of results (default 20, max 40).
+
+    Returns:
+        str: JSON list of statuses.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.favourites(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get statuses favourited by the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of statuses.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.fmt"><code class="name flex">
+<span>def <span class="ident">fmt</span></span>(<span>data: Any) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fmt(data: Any) -&gt; str:
+    return json.dumps(data, indent=2, default=str, ensure_ascii=False)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="mastodon_mcp_server.server.follow_request_authorize"><code class="name flex">
+<span>def <span class="ident">follow_request_authorize</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def follow_request_authorize(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Approve a follow request.
+
+    Args:
+        account_id: Numeric account ID of the requester.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.follow_request_authorize(account_id))</code></pre>
+</details>
+<div class="desc"><p>Approve a follow request.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID of the requester.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.follow_request_reject"><code class="name flex">
+<span>def <span class="ident">follow_request_reject</span></span>(<span>account_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def follow_request_reject(account_id: str) -&gt; str:
+    &#34;&#34;&#34;Reject a follow request.
+
+    Args:
+        account_id: Numeric account ID of the requester.
+
+    Returns:
+        str: JSON with the resulting relationship.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.follow_request_reject(account_id))</code></pre>
+</details>
+<div class="desc"><p>Reject a follow request.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>Numeric account ID of the requester.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the resulting relationship.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.follow_requests"><code class="name flex">
+<span>def <span class="ident">follow_requests</span></span>(<span>limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def follow_requests(limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get pending follow requests for the authenticated account.
+
+    Args:
+        limit: Maximum number of results (default 40).
+
+    Returns:
+        str: JSON list of accounts that sent follow requests.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.follow_requests(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get pending follow requests for the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of accounts that sent follow requests.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.get_client"><code class="name flex">
+<span>def <span class="ident">get_client</span></span>(<span>) ‑> mastodon.Mastodon.Mastodon</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_client() -&gt; Mastodon:
+    global _client
+
+    if _client is None:
+        instance = os.getenv(&#34;MASTODON_INSTANCE&#34;)
+        access_token = os.getenv(&#34;MASTODON_ACCESS_TOKEN&#34;)
+
+        if not instance:
+            raise ValueError(&#34;MASTODON_INSTANCE environment variable is required&#34;)
+        if not access_token:
+            raise ValueError(&#34;MASTODON_ACCESS_TOKEN environment variable is required&#34;)
+
+        logger.info(f&#34;Connecting to Mastodon instance: {instance}&#34;)
+        _client = Mastodon(
+            access_token=access_token,
+            api_base_url=instance,
+        )
+        logger.info(&#34;Mastodon client initialized&#34;)
+
+    return _client</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="mastodon_mcp_server.server.instance_info"><code class="name flex">
+<span>def <span class="ident">instance_info</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def instance_info() -&gt; str:
+    &#34;&#34;&#34;Get information about the connected Mastodon instance.
+
+    Returns:
+        str: JSON with instance name, description, version, rules, etc.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.instance())</code></pre>
+</details>
+<div class="desc"><p>Get information about the connected Mastodon instance.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with instance name, description, version, rules, etc.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.is_read_only"><code class="name flex">
+<span>def <span class="ident">is_read_only</span></span>(<span>) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_read_only() -&gt; bool:
+    return os.getenv(&#34;READ_ONLY&#34;, &#34;false&#34;).lower() in (&#34;true&#34;, &#34;1&#34;, &#34;yes&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="mastodon_mcp_server.server.list_accounts"><code class="name flex">
+<span>def <span class="ident">list_accounts</span></span>(<span>list_id: str, limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def list_accounts(list_id: str, limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get accounts in a specific list.
+
+    Args:
+        list_id: Numeric list ID.
+        limit: Maximum number of accounts (default 40).
+
+    Returns:
+        str: JSON list of account objects.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.list_accounts(list_id, limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get accounts in a specific list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>list_id</code></strong></dt>
+<dd>Numeric list ID.</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of accounts (default 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of account objects.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.list_accounts_add"><code class="name flex">
+<span>def <span class="ident">list_accounts_add</span></span>(<span>list_id: str, account_ids: List[str]) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def list_accounts_add(list_id: str, account_ids: List[str]) -&gt; str:
+    &#34;&#34;&#34;Add accounts to a list.
+
+    Args:
+        list_id: Numeric list ID.
+        account_ids: List of numeric account IDs to add.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.list_accounts_add(list_id, account_ids)
+    return fmt({&#34;success&#34;: True, &#34;list_id&#34;: list_id, &#34;added&#34;: account_ids})</code></pre>
+</details>
+<div class="desc"><p>Add accounts to a list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>list_id</code></strong></dt>
+<dd>Numeric list ID.</dd>
+<dt><strong><code>account_ids</code></strong></dt>
+<dd>List of numeric account IDs to add.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.list_accounts_delete"><code class="name flex">
+<span>def <span class="ident">list_accounts_delete</span></span>(<span>list_id: str, account_ids: List[str]) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def list_accounts_delete(list_id: str, account_ids: List[str]) -&gt; str:
+    &#34;&#34;&#34;Remove accounts from a list.
+
+    Args:
+        list_id: Numeric list ID.
+        account_ids: List of numeric account IDs to remove.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.list_accounts_delete(list_id, account_ids)
+    return fmt({&#34;success&#34;: True, &#34;list_id&#34;: list_id, &#34;removed&#34;: account_ids})</code></pre>
+</details>
+<div class="desc"><p>Remove accounts from a list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>list_id</code></strong></dt>
+<dd>Numeric list ID.</dd>
+<dt><strong><code>account_ids</code></strong></dt>
+<dd>List of numeric account IDs to remove.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.list_create"><code class="name flex">
+<span>def <span class="ident">list_create</span></span>(<span>title: str, replies_policy: str = 'list') ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def list_create(title: str, replies_policy: str = &#34;list&#34;) -&gt; str:
+    &#34;&#34;&#34;Create a new list.
+
+    Args:
+        title: Title of the list.
+        replies_policy: &#39;followed&#39;, &#39;list&#39;, or &#39;none&#39; (default &#39;list&#39;).
+
+    Returns:
+        str: JSON with the newly created list.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.list_create(title, replies_policy=replies_policy))</code></pre>
+</details>
+<div class="desc"><p>Create a new list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>title</code></strong></dt>
+<dd>Title of the list.</dd>
+<dt><strong><code>replies_policy</code></strong></dt>
+<dd>'followed', 'list', or 'none' (default 'list').</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the newly created list.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.list_delete"><code class="name flex">
+<span>def <span class="ident">list_delete</span></span>(<span>list_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def list_delete(list_id: str) -&gt; str:
+    &#34;&#34;&#34;Delete a list.
+
+    Args:
+        list_id: Numeric list ID.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.list_delete(list_id)
+    return fmt({&#34;success&#34;: True, &#34;list_id&#34;: list_id})</code></pre>
+</details>
+<div class="desc"><p>Delete a list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>list_id</code></strong></dt>
+<dd>Numeric list ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.lists_get"><code class="name flex">
+<span>def <span class="ident">lists_get</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def lists_get() -&gt; str:
+    &#34;&#34;&#34;Get all lists created by the authenticated account.
+
+    Returns:
+        str: JSON list of list objects with id and title.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.lists())</code></pre>
+</details>
+<div class="desc"><p>Get all lists created by the authenticated account.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of list objects with id and title.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    from importlib.metadata import version, PackageNotFoundError
+    try:
+        pkg_version = version(&#34;mastodon-mcp-server&#34;)
+    except PackageNotFoundError:
+        pkg_version = &#34;unknown&#34;
+
+    parser = argparse.ArgumentParser(
+        prog=&#34;mastodon-mcp&#34;,
+        description=&#34;Model Context Protocol server for Mastodon integration.&#34;,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=&#34;&#34;&#34;
+Environment variables:
+  MASTODON_INSTANCE          Mastodon instance URL (required)
+  MASTODON_ACCESS_TOKEN      OAuth access token (required)
+  MASTODON_MCP_TRANSPORT     Transport mode: stdio (default) or streamable-http
+  MASTODON_MCP_HOST          HTTP bind address (default: 127.0.0.1)
+  MASTODON_MCP_PORT          HTTP port (default: 8000)
+  MASTODON_MCP_STATELESS_HTTP  Disable HTTP session state (default: false)
+  READ_ONLY                  Restrict to read-only operations (default: false)
+  DEBUG                      Enable verbose logging (default: false)
+
+Examples:
+  # Run as stdio MCP server (for use with AI clients):
+  MASTODON_INSTANCE=https://mastodon.social MASTODON_ACCESS_TOKEN=&lt;token&gt; mastodon-mcp
+
+  # Run as HTTP MCP server:
+  MASTODON_MCP_TRANSPORT=streamable-http MASTODON_MCP_PORT=8080 \\
+    MASTODON_INSTANCE=https://mastodon.social MASTODON_ACCESS_TOKEN=&lt;token&gt; mastodon-mcp
+&#34;&#34;&#34;,
+    )
+    parser.add_argument(&#34;--version&#34;, action=&#34;version&#34;, version=f&#34;%(prog)s {pkg_version}&#34;)
+    parser.parse_args()
+
+    transport = os.getenv(&#34;MASTODON_MCP_TRANSPORT&#34;, &#34;stdio&#34;).lower()
+
+    if transport == &#34;streamable-http&#34;:
+        host = os.getenv(&#34;MASTODON_MCP_HOST&#34;, &#34;127.0.0.1&#34;)
+        port = int(os.getenv(&#34;MASTODON_MCP_PORT&#34;, &#34;8000&#34;))
+        stateless = os.getenv(&#34;MASTODON_MCP_STATELESS_HTTP&#34;, &#34;false&#34;).lower() in (&#34;true&#34;, &#34;1&#34;, &#34;yes&#34;)
+        logger.info(f&#34;Starting MCP server with HTTP transport on {host}:{port}&#34;)
+        mcp.run(transport=&#34;streamable-http&#34;, host=host, port=port, stateless=stateless)
+    else:
+        logger.info(&#34;Starting MCP server with stdio transport&#34;)
+        mcp.run()</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="mastodon_mcp_server.server.media_post"><code class="name flex">
+<span>def <span class="ident">media_post</span></span>(<span>file_path: str, description: str | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def media_post(file_path: str, description: Optional[str] = None) -&gt; str:
+    &#34;&#34;&#34;Upload a media file (image, video, audio) to Mastodon.
+
+    Args:
+        file_path: Absolute path to the media file to upload.
+        description: Alt text / accessibility description for the media.
+
+    Returns:
+        str: JSON with the media attachment object including its ID.
+             Use the returned &#39;id&#39; in status_post&#39;s media_ids parameter.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.media_post(file_path, description=description))</code></pre>
+</details>
+<div class="desc"><p>Upload a media file (image, video, audio) to Mastodon.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>file_path</code></strong></dt>
+<dd>Absolute path to the media file to upload.</dd>
+<dt><strong><code>description</code></strong></dt>
+<dd>Alt text / accessibility description for the media.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the media attachment object including its ID.
+Use the returned 'id' in status_post's media_ids parameter.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.mutes"><code class="name flex">
+<span>def <span class="ident">mutes</span></span>(<span>limit: int = 40) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def mutes(limit: int = 40) -&gt; str:
+    &#34;&#34;&#34;Get accounts muted by the authenticated account.
+
+    Args:
+        limit: Maximum number of results (default 40).
+
+    Returns:
+        str: JSON list of muted accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.mutes(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get accounts muted by the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of muted accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.notification_dismiss"><code class="name flex">
+<span>def <span class="ident">notification_dismiss</span></span>(<span>notification_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def notification_dismiss(notification_id: str) -&gt; str:
+    &#34;&#34;&#34;Dismiss (clear) a single notification.
+
+    Args:
+        notification_id: Numeric notification ID.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.notifications_dismiss(notification_id)
+    return fmt({&#34;success&#34;: True, &#34;notification_id&#34;: notification_id})</code></pre>
+</details>
+<div class="desc"><p>Dismiss (clear) a single notification.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>notification_id</code></strong></dt>
+<dd>Numeric notification ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.notifications_clear"><code class="name flex">
+<span>def <span class="ident">notifications_clear</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def notifications_clear() -&gt; str:
+    &#34;&#34;&#34;Dismiss all notifications for the authenticated account.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.notifications_clear()
+    return fmt({&#34;success&#34;: True})</code></pre>
+</details>
+<div class="desc"><p>Dismiss all notifications for the authenticated account.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.notifications_get"><code class="name flex">
+<span>def <span class="ident">notifications_get</span></span>(<span>limit: int = 20, exclude_types: List[str] | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def notifications_get(
+    limit: int = 20,
+    exclude_types: Optional[List[str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Get notifications for the authenticated account.
+
+    Args:
+        limit: Maximum number of notifications (default 20, max 30).
+        exclude_types: Types to exclude: &#39;follow&#39;, &#39;favourite&#39;, &#39;reblog&#39;,
+                       &#39;mention&#39;, &#39;poll&#39;, &#39;follow_request&#39;, &#39;update&#39;, &#39;status&#39;.
+
+    Returns:
+        str: JSON list of notification objects.
+    &#34;&#34;&#34;
+    client = get_client()
+    kwargs: Dict[str, Any] = {&#34;limit&#34;: limit}
+    if exclude_types:
+        kwargs[&#34;exclude_types&#34;] = exclude_types
+    return fmt(client.notifications(**kwargs))</code></pre>
+</details>
+<div class="desc"><p>Get notifications for the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of notifications (default 20, max 30).</dd>
+<dt><strong><code>exclude_types</code></strong></dt>
+<dd>Types to exclude: 'follow', 'favourite', 'reblog',
+'mention', 'poll', 'follow_request', 'update', 'status'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of notification objects.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.notifications_unread_count"><code class="name flex">
+<span>def <span class="ident">notifications_unread_count</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def notifications_unread_count() -&gt; str:
+    &#34;&#34;&#34;Get the number of unread notifications.
+
+    Returns:
+        str: JSON with &#39;count&#39; field.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.notifications_unread_count())</code></pre>
+</details>
+<div class="desc"><p>Get the number of unread notifications.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with 'count' field.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.poll_vote"><code class="name flex">
+<span>def <span class="ident">poll_vote</span></span>(<span>poll_id: str, choices: List[int]) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def poll_vote(poll_id: str, choices: List[int]) -&gt; str:
+    &#34;&#34;&#34;Vote in a poll.
+
+    Args:
+        poll_id: Numeric poll ID.
+        choices: List of choice indices (0-based) to vote for.
+
+    Returns:
+        str: JSON with updated poll.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.poll_vote(poll_id, choices))</code></pre>
+</details>
+<div class="desc"><p>Vote in a poll.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>poll_id</code></strong></dt>
+<dd>Numeric poll ID.</dd>
+<dt><strong><code>choices</code></strong></dt>
+<dd>List of choice indices (0-based) to vote for.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with updated poll.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.scheduled_status_delete"><code class="name flex">
+<span>def <span class="ident">scheduled_status_delete</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def scheduled_status_delete(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Cancel and delete a scheduled status.
+
+    Args:
+        status_id: Numeric scheduled-status ID.
+
+    Returns:
+        str: JSON confirmation.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    client.scheduled_status_delete(id=status_id)
+    return fmt({&#34;success&#34;: True, &#34;status_id&#34;: status_id})</code></pre>
+</details>
+<div class="desc"><p>Cancel and delete a scheduled status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric scheduled-status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON confirmation.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.scheduled_status_update"><code class="name flex">
+<span>def <span class="ident">scheduled_status_update</span></span>(<span>status_id: str, scheduled_at: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def scheduled_status_update(status_id: str, scheduled_at: str) -&gt; str:
+    &#34;&#34;&#34;Reschedule a scheduled status.
+
+    Args:
+        status_id: Numeric scheduled-status ID.
+        scheduled_at: New ISO 8601 datetime string (e.g. &#39;2026-01-01T12:00:00Z&#39;).
+
+    Returns:
+        str: JSON with the updated ScheduledStatus object.
+    &#34;&#34;&#34;
+    from datetime import datetime
+    validate_write()
+    client = get_client()
+    return fmt(client.scheduled_status_update(id=status_id, scheduled_at=datetime.fromisoformat(scheduled_at)))</code></pre>
+</details>
+<div class="desc"><p>Reschedule a scheduled status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric scheduled-status ID.</dd>
+<dt><strong><code>scheduled_at</code></strong></dt>
+<dd>New ISO 8601 datetime string (e.g. '2026-01-01T12:00:00Z').</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the updated ScheduledStatus object.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.scheduled_statuses"><code class="name flex">
+<span>def <span class="ident">scheduled_statuses</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def scheduled_statuses(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get statuses scheduled for future posting.
+
+    Args:
+        limit: Maximum number of results (default 20, max 40).
+
+    Returns:
+        str: JSON list of ScheduledStatus objects with &#39;id&#39; and &#39;scheduled_at&#39;.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.scheduled_statuses(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get statuses scheduled for future posting.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of results (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of ScheduledStatus objects with 'id' and 'scheduled_at'.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>query: str,<br>resolve: bool = False,<br>limit: int = 20,<br>search_type: str | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def search(
+    query: str,
+    resolve: bool = False,
+    limit: int = 20,
+    search_type: Optional[str] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Search Mastodon for accounts, statuses, and hashtags.
+
+    Args:
+        query: Search string.
+        resolve: Resolve non-local accounts/statuses (default False).
+        limit: Maximum results per category (default 20).
+        search_type: Restrict to &#39;accounts&#39;, &#39;statuses&#39;, or &#39;hashtags&#39;.
+                     None returns all types.
+
+    Returns:
+        str: JSON with &#39;accounts&#39;, &#39;statuses&#39;, and &#39;hashtags&#39; lists.
+    &#34;&#34;&#34;
+    client = get_client()
+    kwargs: Dict[str, Any] = {&#34;q&#34;: query, &#34;resolve&#34;: resolve, &#34;limit&#34;: limit}
+    if search_type:
+        kwargs[&#34;result_type&#34;] = search_type
+    return fmt(client.search(**kwargs))</code></pre>
+</details>
+<div class="desc"><p>Search Mastodon for accounts, statuses, and hashtags.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>query</code></strong></dt>
+<dd>Search string.</dd>
+<dt><strong><code>resolve</code></strong></dt>
+<dd>Resolve non-local accounts/statuses (default False).</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum results per category (default 20).</dd>
+<dt><strong><code>search_type</code></strong></dt>
+<dd>Restrict to 'accounts', 'statuses', or 'hashtags'.
+None returns all types.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with 'accounts', 'statuses', and 'hashtags' lists.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_bookmark"><code class="name flex">
+<span>def <span class="ident">status_bookmark</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_bookmark(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Bookmark a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the bookmarked status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_bookmark(status_id))</code></pre>
+</details>
+<div class="desc"><p>Bookmark a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the bookmarked status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_context"><code class="name flex">
+<span>def <span class="ident">status_context</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_context(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get ancestors and descendants of a status (thread context).
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with &#39;ancestors&#39; and &#39;descendants&#39; lists.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_context(status_id))</code></pre>
+</details>
+<div class="desc"><p>Get ancestors and descendants of a status (thread context).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with 'ancestors' and 'descendants' lists.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_delete"><code class="name flex">
+<span>def <span class="ident">status_delete</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_delete(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Delete a status posted by the authenticated account.
+
+    Args:
+        status_id: Numeric ID of the status to delete.
+
+    Returns:
+        str: JSON with the deleted status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_delete(status_id))</code></pre>
+</details>
+<div class="desc"><p>Delete a status posted by the authenticated account.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric ID of the status to delete.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the deleted status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_favourite"><code class="name flex">
+<span>def <span class="ident">status_favourite</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_favourite(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Favourite (like) a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the favourited status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_favourite(status_id))</code></pre>
+</details>
+<div class="desc"><p>Favourite (like) a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the favourited status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_favourited_by"><code class="name flex">
+<span>def <span class="ident">status_favourited_by</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_favourited_by(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get accounts that favourited a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON list of accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_favourited_by(status_id))</code></pre>
+</details>
+<div class="desc"><p>Get accounts that favourited a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_get"><code class="name flex">
+<span>def <span class="ident">status_get</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_get(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get a single status by ID.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with status details.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status(status_id))</code></pre>
+</details>
+<div class="desc"><p>Get a single status by ID.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with status details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_history"><code class="name flex">
+<span>def <span class="ident">status_history</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_history(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get the edit history of a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON list of StatusEdit objects, oldest first.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_history(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Get the edit history of a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of StatusEdit objects, oldest first.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_mute"><code class="name flex">
+<span>def <span class="ident">status_mute</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_mute(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Mute a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the muted status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_mute(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Mute a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the muted status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_pin"><code class="name flex">
+<span>def <span class="ident">status_pin</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_pin(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Pin a status to the authenticated account&#39;s profile.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the pinned status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_pin(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Pin a status to the authenticated account's profile.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the pinned status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_post"><code class="name flex">
+<span>def <span class="ident">status_post</span></span>(<span>content: str,<br>visibility: str = 'public',<br>spoiler_text: str | None = None,<br>in_reply_to_id: str | None = None,<br>sensitive: bool = False,<br>language: str | None = None,<br>media_ids: List[str] | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_post(
+    content: str,
+    visibility: str = &#34;public&#34;,
+    spoiler_text: Optional[str] = None,
+    in_reply_to_id: Optional[str] = None,
+    sensitive: bool = False,
+    language: Optional[str] = None,
+    media_ids: Optional[List[str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Post a new status (toot).
+
+    Args:
+        content: Text content of the status. Supports HTML or plain text.
+        visibility: &#39;public&#39;, &#39;unlisted&#39;, &#39;private&#39;, or &#39;direct&#39; (default &#39;public&#39;).
+        spoiler_text: Content warning / spoiler text shown before the status.
+        in_reply_to_id: Numeric ID of the status to reply to.
+        sensitive: Mark media as sensitive (default False).
+        language: ISO 639-1 language code (e.g. &#39;en&#39;, &#39;cs&#39;).
+        media_ids: List of media attachment IDs to attach.
+
+    Returns:
+        str: JSON with the newly created status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_post(
+        content,
+        visibility=visibility,
+        spoiler_text=spoiler_text,
+        in_reply_to_id=in_reply_to_id,
+        sensitive=sensitive,
+        language=language,
+        media_ids=media_ids,
+    ))</code></pre>
+</details>
+<div class="desc"><p>Post a new status (toot).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>content</code></strong></dt>
+<dd>Text content of the status. Supports HTML or plain text.</dd>
+<dt><strong><code>visibility</code></strong></dt>
+<dd>'public', 'unlisted', 'private', or 'direct' (default 'public').</dd>
+<dt><strong><code>spoiler_text</code></strong></dt>
+<dd>Content warning / spoiler text shown before the status.</dd>
+<dt><strong><code>in_reply_to_id</code></strong></dt>
+<dd>Numeric ID of the status to reply to.</dd>
+<dt><strong><code>sensitive</code></strong></dt>
+<dd>Mark media as sensitive (default False).</dd>
+<dt><strong><code>language</code></strong></dt>
+<dd>ISO 639-1 language code (e.g. 'en', 'cs').</dd>
+<dt><strong><code>media_ids</code></strong></dt>
+<dd>List of media attachment IDs to attach.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the newly created status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_reblog"><code class="name flex">
+<span>def <span class="ident">status_reblog</span></span>(<span>status_id: str, visibility: str = 'public') ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_reblog(status_id: str, visibility: str = &#34;public&#34;) -&gt; str:
+    &#34;&#34;&#34;Reblog (boost) a status.
+
+    Args:
+        status_id: Numeric status ID.
+        visibility: Visibility of the reblog: &#39;public&#39;, &#39;unlisted&#39;, or &#39;private&#39;.
+
+    Returns:
+        str: JSON with the reblog status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_reblog(status_id, visibility=visibility))</code></pre>
+</details>
+<div class="desc"><p>Reblog (boost) a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+<dt><strong><code>visibility</code></strong></dt>
+<dd>Visibility of the reblog: 'public', 'unlisted', or 'private'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the reblog status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_reblogged_by"><code class="name flex">
+<span>def <span class="ident">status_reblogged_by</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_reblogged_by(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get accounts that reblogged a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON list of accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_reblogged_by(status_id))</code></pre>
+</details>
+<div class="desc"><p>Get accounts that reblogged a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_source"><code class="name flex">
+<span>def <span class="ident">status_source</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_source(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Get the plain-text source of a status for editing.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with &#39;id&#39;, &#39;text&#39;, and &#39;spoiler_text&#39; fields.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_source(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Get the plain-text source of a status for editing.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with 'id', 'text', and 'spoiler_text' fields.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_translate"><code class="name flex">
+<span>def <span class="ident">status_translate</span></span>(<span>status_id: str, language: str | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_translate(status_id: str, language: Optional[str] = None) -&gt; str:
+    &#34;&#34;&#34;Translate a status to another language.
+
+    Args:
+        status_id: Numeric status ID.
+        language: Target ISO 639-1 language code (e.g. &#39;en&#39;, &#39;cs&#39;).
+                  Defaults to the authenticated account&#39;s language.
+
+    Returns:
+        str: JSON with translated &#39;content&#39;, &#39;detected_source_language&#39;, and &#39;provider&#39;.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.status_translate(id=status_id, lang=language))</code></pre>
+</details>
+<div class="desc"><p>Translate a status to another language.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+<dt><strong><code>language</code></strong></dt>
+<dd>Target ISO 639-1 language code (e.g. 'en', 'cs').
+Defaults to the authenticated account's language.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with translated 'content', 'detected_source_language', and 'provider'.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_unbookmark"><code class="name flex">
+<span>def <span class="ident">status_unbookmark</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_unbookmark(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Remove a bookmark from a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unbookmark(status_id))</code></pre>
+</details>
+<div class="desc"><p>Remove a bookmark from a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_unfavourite"><code class="name flex">
+<span>def <span class="ident">status_unfavourite</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_unfavourite(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Remove a favourite from a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unfavourite(status_id))</code></pre>
+</details>
+<div class="desc"><p>Remove a favourite from a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_unmute"><code class="name flex">
+<span>def <span class="ident">status_unmute</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_unmute(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Unmute a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the unmuted status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unmute(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Unmute a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the unmuted status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_unpin"><code class="name flex">
+<span>def <span class="ident">status_unpin</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_unpin(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Unpin a status from the authenticated account&#39;s profile.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the unpinned status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unpin(id=status_id))</code></pre>
+</details>
+<div class="desc"><p>Unpin a status from the authenticated account's profile.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the unpinned status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_unreblog"><code class="name flex">
+<span>def <span class="ident">status_unreblog</span></span>(<span>status_id: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_unreblog(status_id: str) -&gt; str:
+    &#34;&#34;&#34;Remove a reblog (unboost) of a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the original status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unreblog(status_id))</code></pre>
+</details>
+<div class="desc"><p>Remove a reblog (unboost) of a status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric status ID.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the original status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.status_update"><code class="name flex">
+<span>def <span class="ident">status_update</span></span>(<span>status_id: str,<br>content: str,<br>spoiler_text: str | None = None,<br>sensitive: bool | None = None,<br>media_ids: List[str] | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def status_update(
+    status_id: str,
+    content: str,
+    spoiler_text: Optional[str] = None,
+    sensitive: Optional[bool] = None,
+    media_ids: Optional[List[str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Edit an existing status.
+
+    Args:
+        status_id: Numeric ID of the status to edit.
+        content: New text content of the status.
+        spoiler_text: New content warning text (None keeps existing).
+        sensitive: Mark media as sensitive (None keeps existing).
+        media_ids: New list of media attachment IDs (None keeps existing).
+
+    Returns:
+        str: JSON with the updated status.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.status_update(
+        id=status_id,
+        status=content,
+        spoiler_text=spoiler_text,
+        sensitive=sensitive,
+        media_ids=media_ids,
+    ))</code></pre>
+</details>
+<div class="desc"><p>Edit an existing status.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status_id</code></strong></dt>
+<dd>Numeric ID of the status to edit.</dd>
+<dt><strong><code>content</code></strong></dt>
+<dd>New text content of the status.</dd>
+<dt><strong><code>spoiler_text</code></strong></dt>
+<dd>New content warning text (None keeps existing).</dd>
+<dt><strong><code>sensitive</code></strong></dt>
+<dd>Mark media as sensitive (None keeps existing).</dd>
+<dt><strong><code>media_ids</code></strong></dt>
+<dd>New list of media attachment IDs (None keeps existing).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the updated status.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.tag_follow"><code class="name flex">
+<span>def <span class="ident">tag_follow</span></span>(<span>hashtag: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def tag_follow(hashtag: str) -&gt; str:
+    &#34;&#34;&#34;Follow a hashtag.
+
+    Args:
+        hashtag: Hashtag name (without # prefix).
+
+    Returns:
+        str: JSON with the tag details.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.tag_follow(hashtag))</code></pre>
+</details>
+<div class="desc"><p>Follow a hashtag.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>hashtag</code></strong></dt>
+<dd>Hashtag name (without # prefix).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the tag details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.tag_unfollow"><code class="name flex">
+<span>def <span class="ident">tag_unfollow</span></span>(<span>hashtag: str) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def tag_unfollow(hashtag: str) -&gt; str:
+    &#34;&#34;&#34;Unfollow a hashtag.
+
+    Args:
+        hashtag: Hashtag name (without # prefix).
+
+    Returns:
+        str: JSON with the tag details.
+    &#34;&#34;&#34;
+    validate_write()
+    client = get_client()
+    return fmt(client.tag_unfollow(hashtag))</code></pre>
+</details>
+<div class="desc"><p>Unfollow a hashtag.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>hashtag</code></strong></dt>
+<dd>Hashtag name (without # prefix).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON with the tag details.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.timeline_hashtag"><code class="name flex">
+<span>def <span class="ident">timeline_hashtag</span></span>(<span>hashtag: str, limit: int = 20, local: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def timeline_hashtag(hashtag: str, limit: int = 20, local: bool = False) -&gt; str:
+    &#34;&#34;&#34;Get statuses with a specific hashtag.
+
+    Args:
+        hashtag: Hashtag to search (without the # prefix).
+        limit: Maximum number of statuses (default 20, max 40).
+        local: Only show statuses from the local instance (default False).
+
+    Returns:
+        str: JSON list of statuses with the hashtag.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.timeline_hashtag(hashtag, limit=limit, local=local))</code></pre>
+</details>
+<div class="desc"><p>Get statuses with a specific hashtag.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>hashtag</code></strong></dt>
+<dd>Hashtag to search (without the # prefix).</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of statuses (default 20, max 40).</dd>
+<dt><strong><code>local</code></strong></dt>
+<dd>Only show statuses from the local instance (default False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of statuses with the hashtag.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.timeline_home"><code class="name flex">
+<span>def <span class="ident">timeline_home</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def timeline_home(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get the authenticated user&#39;s home timeline.
+
+    Args:
+        limit: Maximum number of statuses (default 20, max 40).
+
+    Returns:
+        str: JSON list of statuses from followed accounts.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.timeline_home(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get the authenticated user's home timeline.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of statuses (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of statuses from followed accounts.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.timeline_local"><code class="name flex">
+<span>def <span class="ident">timeline_local</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def timeline_local(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get the local (instance) public timeline.
+
+    Args:
+        limit: Maximum number of statuses (default 20, max 40).
+
+    Returns:
+        str: JSON list of public statuses from the local instance.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.timeline_local(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get the local (instance) public timeline.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of statuses (default 20, max 40).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of public statuses from the local instance.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.timeline_public"><code class="name flex">
+<span>def <span class="ident">timeline_public</span></span>(<span>limit: int = 20, remote: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def timeline_public(limit: int = 20, remote: bool = False) -&gt; str:
+    &#34;&#34;&#34;Get the federated public timeline.
+
+    Args:
+        limit: Maximum number of statuses (default 20, max 40).
+        remote: Only show remote statuses (default False).
+
+    Returns:
+        str: JSON list of public federated statuses.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.timeline_public(limit=limit, remote=remote))</code></pre>
+</details>
+<div class="desc"><p>Get the federated public timeline.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of statuses (default 20, max 40).</dd>
+<dt><strong><code>remote</code></strong></dt>
+<dd>Only show remote statuses (default False).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of public federated statuses.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.trending_links"><code class="name flex">
+<span>def <span class="ident">trending_links</span></span>(<span>limit: int = 10) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def trending_links(limit: int = 10) -&gt; str:
+    &#34;&#34;&#34;Get trending links (articles) on the instance.
+
+    Args:
+        limit: Maximum number of links (default 10).
+
+    Returns:
+        str: JSON list of trending link card objects.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.trending_links(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get trending links (articles) on the instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of links (default 10).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of trending link card objects.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.trending_statuses"><code class="name flex">
+<span>def <span class="ident">trending_statuses</span></span>(<span>limit: int = 20) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def trending_statuses(limit: int = 20) -&gt; str:
+    &#34;&#34;&#34;Get trending statuses on the instance.
+
+    Args:
+        limit: Maximum number of statuses (default 20).
+
+    Returns:
+        str: JSON list of trending statuses.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.trending_statuses(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get trending statuses on the instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of statuses (default 20).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of trending statuses.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.trending_tags"><code class="name flex">
+<span>def <span class="ident">trending_tags</span></span>(<span>limit: int = 10) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@mcp.tool()
+def trending_tags(limit: int = 10) -&gt; str:
+    &#34;&#34;&#34;Get trending hashtags on the instance.
+
+    Args:
+        limit: Maximum number of tags (default 10).
+
+    Returns:
+        str: JSON list of trending tag objects with name and history.
+    &#34;&#34;&#34;
+    client = get_client()
+    return fmt(client.trending_tags(limit=limit))</code></pre>
+</details>
+<div class="desc"><p>Get trending hashtags on the instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Maximum number of tags (default 10).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>JSON list of trending tag objects with name and history.</dd>
+</dl></div>
+</dd>
+<dt id="mastodon_mcp_server.server.validate_write"><code class="name flex">
+<span>def <span class="ident">validate_write</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_write() -&gt; None:
+    if is_read_only():
+        raise ValueError(&#34;Server is in read-only mode - write operations are not allowed&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mastodon_mcp_server" href="index.html">mastodon_mcp_server</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="mastodon_mcp_server.server.account_block" href="#mastodon_mcp_server.server.account_block">account_block</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_follow" href="#mastodon_mcp_server.server.account_follow">account_follow</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_followers" href="#mastodon_mcp_server.server.account_followers">account_followers</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_following" href="#mastodon_mcp_server.server.account_following">account_following</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_get" href="#mastodon_mcp_server.server.account_get">account_get</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_lookup" href="#mastodon_mcp_server.server.account_lookup">account_lookup</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_mute" href="#mastodon_mcp_server.server.account_mute">account_mute</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_relationships" href="#mastodon_mcp_server.server.account_relationships">account_relationships</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_search" href="#mastodon_mcp_server.server.account_search">account_search</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_statuses" href="#mastodon_mcp_server.server.account_statuses">account_statuses</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_unblock" href="#mastodon_mcp_server.server.account_unblock">account_unblock</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_unfollow" href="#mastodon_mcp_server.server.account_unfollow">account_unfollow</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_unmute" href="#mastodon_mcp_server.server.account_unmute">account_unmute</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_update" href="#mastodon_mcp_server.server.account_update">account_update</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.account_verify" href="#mastodon_mcp_server.server.account_verify">account_verify</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.blocks" href="#mastodon_mcp_server.server.blocks">blocks</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.bookmarks" href="#mastodon_mcp_server.server.bookmarks">bookmarks</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.conversations" href="#mastodon_mcp_server.server.conversations">conversations</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.directory" href="#mastodon_mcp_server.server.directory">directory</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.favourites" href="#mastodon_mcp_server.server.favourites">favourites</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.fmt" href="#mastodon_mcp_server.server.fmt">fmt</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.follow_request_authorize" href="#mastodon_mcp_server.server.follow_request_authorize">follow_request_authorize</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.follow_request_reject" href="#mastodon_mcp_server.server.follow_request_reject">follow_request_reject</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.follow_requests" href="#mastodon_mcp_server.server.follow_requests">follow_requests</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.get_client" href="#mastodon_mcp_server.server.get_client">get_client</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.instance_info" href="#mastodon_mcp_server.server.instance_info">instance_info</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.is_read_only" href="#mastodon_mcp_server.server.is_read_only">is_read_only</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.list_accounts" href="#mastodon_mcp_server.server.list_accounts">list_accounts</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.list_accounts_add" href="#mastodon_mcp_server.server.list_accounts_add">list_accounts_add</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.list_accounts_delete" href="#mastodon_mcp_server.server.list_accounts_delete">list_accounts_delete</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.list_create" href="#mastodon_mcp_server.server.list_create">list_create</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.list_delete" href="#mastodon_mcp_server.server.list_delete">list_delete</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.lists_get" href="#mastodon_mcp_server.server.lists_get">lists_get</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.main" href="#mastodon_mcp_server.server.main">main</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.media_post" href="#mastodon_mcp_server.server.media_post">media_post</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.mutes" href="#mastodon_mcp_server.server.mutes">mutes</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.notification_dismiss" href="#mastodon_mcp_server.server.notification_dismiss">notification_dismiss</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.notifications_clear" href="#mastodon_mcp_server.server.notifications_clear">notifications_clear</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.notifications_get" href="#mastodon_mcp_server.server.notifications_get">notifications_get</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.notifications_unread_count" href="#mastodon_mcp_server.server.notifications_unread_count">notifications_unread_count</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.poll_vote" href="#mastodon_mcp_server.server.poll_vote">poll_vote</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.scheduled_status_delete" href="#mastodon_mcp_server.server.scheduled_status_delete">scheduled_status_delete</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.scheduled_status_update" href="#mastodon_mcp_server.server.scheduled_status_update">scheduled_status_update</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.scheduled_statuses" href="#mastodon_mcp_server.server.scheduled_statuses">scheduled_statuses</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.search" href="#mastodon_mcp_server.server.search">search</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_bookmark" href="#mastodon_mcp_server.server.status_bookmark">status_bookmark</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_context" href="#mastodon_mcp_server.server.status_context">status_context</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_delete" href="#mastodon_mcp_server.server.status_delete">status_delete</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_favourite" href="#mastodon_mcp_server.server.status_favourite">status_favourite</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_favourited_by" href="#mastodon_mcp_server.server.status_favourited_by">status_favourited_by</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_get" href="#mastodon_mcp_server.server.status_get">status_get</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_history" href="#mastodon_mcp_server.server.status_history">status_history</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_mute" href="#mastodon_mcp_server.server.status_mute">status_mute</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_pin" href="#mastodon_mcp_server.server.status_pin">status_pin</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_post" href="#mastodon_mcp_server.server.status_post">status_post</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_reblog" href="#mastodon_mcp_server.server.status_reblog">status_reblog</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_reblogged_by" href="#mastodon_mcp_server.server.status_reblogged_by">status_reblogged_by</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_source" href="#mastodon_mcp_server.server.status_source">status_source</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_translate" href="#mastodon_mcp_server.server.status_translate">status_translate</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_unbookmark" href="#mastodon_mcp_server.server.status_unbookmark">status_unbookmark</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_unfavourite" href="#mastodon_mcp_server.server.status_unfavourite">status_unfavourite</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_unmute" href="#mastodon_mcp_server.server.status_unmute">status_unmute</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_unpin" href="#mastodon_mcp_server.server.status_unpin">status_unpin</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_unreblog" href="#mastodon_mcp_server.server.status_unreblog">status_unreblog</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.status_update" href="#mastodon_mcp_server.server.status_update">status_update</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.tag_follow" href="#mastodon_mcp_server.server.tag_follow">tag_follow</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.tag_unfollow" href="#mastodon_mcp_server.server.tag_unfollow">tag_unfollow</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.timeline_hashtag" href="#mastodon_mcp_server.server.timeline_hashtag">timeline_hashtag</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.timeline_home" href="#mastodon_mcp_server.server.timeline_home">timeline_home</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.timeline_local" href="#mastodon_mcp_server.server.timeline_local">timeline_local</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.timeline_public" href="#mastodon_mcp_server.server.timeline_public">timeline_public</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.trending_links" href="#mastodon_mcp_server.server.trending_links">trending_links</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.trending_statuses" href="#mastodon_mcp_server.server.trending_statuses">trending_statuses</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.trending_tags" href="#mastodon_mcp_server.server.trending_tags">trending_tags</a></code></li>
+<li><code><a title="mastodon_mcp_server.server.validate_write" href="#mastodon_mcp_server.server.validate_write">validate_write</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

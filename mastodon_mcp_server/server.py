@@ -989,152 +989,258 @@ def directory(
 #
 # ─────────────────────────────────────────────────────────────────────────────
 
-# @mcp.tool()
-# def status_update(
-#     status_id: str,
-#     content: str,
-#     spoiler_text: Optional[str] = None,
-#     sensitive: Optional[bool] = None,
-#     media_ids: Optional[List[str]] = None,
-# ) -> str:
-#     """Edit an existing status (requires Mastodon server 3.5+ and Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric ID of the status to edit.
-#         content: New text content of the status.
-#         spoiler_text: New content warning text (None keeps existing).
-#         sensitive: Mark media as sensitive (None keeps existing).
-#         media_ids: New list of media attachment IDs (None keeps existing).
-#
-#     Returns:
-#         str: JSON with the updated status.
-#     """
-#     validate_write()
-#     client = get_client()
-#     return fmt(client.status_update(
-#         status_id,
-#         status=content,
-#         spoiler_text=spoiler_text,
-#         sensitive=sensitive,
-#         media_ids=media_ids,
-#     ))
+@mcp.tool()
+def status_update(
+    status_id: str,
+    content: str,
+    spoiler_text: Optional[str] = None,
+    sensitive: Optional[bool] = None,
+    media_ids: Optional[List[str]] = None,
+) -> str:
+    """Edit an existing status.
+
+    Args:
+        status_id: Numeric ID of the status to edit.
+        content: New text content of the status.
+        spoiler_text: New content warning text (None keeps existing).
+        sensitive: Mark media as sensitive (None keeps existing).
+        media_ids: New list of media attachment IDs (None keeps existing).
+
+    Returns:
+        str: JSON with the updated status.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.status_update(
+        id=status_id,
+        status=content,
+        spoiler_text=spoiler_text,
+        sensitive=sensitive,
+        media_ids=media_ids,
+    ))
 
 
-# @mcp.tool()
-# def status_history(status_id: str) -> str:
-#     """Get the edit history of a status (requires Mastodon server 3.5+ and Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric status ID.
-#
-#     Returns:
-#         str: JSON list of StatusEdit objects, oldest first.
-#     """
-#     client = get_client()
-#     return fmt(client.status_history(status_id))
+@mcp.tool()
+def status_history(status_id: str) -> str:
+    """Get the edit history of a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON list of StatusEdit objects, oldest first.
+    """
+    client = get_client()
+    return fmt(client.status_history(id=status_id))
 
 
-# @mcp.tool()
-# def status_source(status_id: str) -> str:
-#     """Get the plain-text source of a status for editing (Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric status ID.
-#
-#     Returns:
-#         str: JSON with 'id', 'text', and 'spoiler_text' fields.
-#     """
-#     client = get_client()
-#     return fmt(client.status_source(status_id))
+@mcp.tool()
+def status_source(status_id: str) -> str:
+    """Get the plain-text source of a status for editing.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with 'id', 'text', and 'spoiler_text' fields.
+    """
+    client = get_client()
+    return fmt(client.status_source(id=status_id))
 
 
-# @mcp.tool()
-# def status_translate(status_id: str, language: Optional[str] = None) -> str:
-#     """Translate a status to another language (requires Mastodon server 4.0+ and Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric status ID.
-#         language: Target ISO 639-1 language code (e.g. 'en', 'cs').
-#                   Defaults to the authenticated account's language.
-#
-#     Returns:
-#         str: JSON with translated 'content', 'detected_source_language', and 'provider'.
-#     """
-#     client = get_client()
-#     return fmt(client.status_translate(status_id, lang=language))
+@mcp.tool()
+def status_translate(status_id: str, language: Optional[str] = None) -> str:
+    """Translate a status to another language.
+
+    Args:
+        status_id: Numeric status ID.
+        language: Target ISO 639-1 language code (e.g. 'en', 'cs').
+                  Defaults to the authenticated account's language.
+
+    Returns:
+        str: JSON with translated 'content', 'detected_source_language', and 'provider'.
+    """
+    client = get_client()
+    return fmt(client.status_translate(id=status_id, lang=language))
 
 
-# @mcp.tool()
-# def conversations(limit: int = 20) -> str:
-#     """Get direct-message conversations (Mastodon.py 2.x).
-#
-#     Args:
-#         limit: Maximum number of conversations (default 20, max 40).
-#
-#     Returns:
-#         str: JSON list of Conversation objects, each containing the last status
-#              and a list of involved accounts.
-#     """
-#     client = get_client()
-#     return fmt(client.conversations(limit=limit))
+@mcp.tool()
+def conversations(limit: int = 20) -> str:
+    """Get direct-message conversations.
+
+    Args:
+        limit: Maximum number of conversations (default 20, max 40).
+
+    Returns:
+        str: JSON list of Conversation objects, each containing the last status
+             and a list of involved accounts.
+    """
+    client = get_client()
+    return fmt(client.conversations(limit=limit))
 
 
-# @mcp.tool()
-# def scheduled_statuses(limit: int = 20) -> str:
-#     """Get statuses scheduled for future posting (Mastodon.py 2.x).
-#
-#     Args:
-#         limit: Maximum number of results (default 20, max 40).
-#
-#     Returns:
-#         str: JSON list of ScheduledStatus objects with 'id' and 'scheduled_at'.
-#     """
-#     client = get_client()
-#     return fmt(client.scheduled_statuses(limit=limit))
+@mcp.tool()
+def scheduled_statuses(limit: int = 20) -> str:
+    """Get statuses scheduled for future posting.
+
+    Args:
+        limit: Maximum number of results (default 20, max 40).
+
+    Returns:
+        str: JSON list of ScheduledStatus objects with 'id' and 'scheduled_at'.
+    """
+    client = get_client()
+    return fmt(client.scheduled_statuses(limit=limit))
 
 
-# @mcp.tool()
-# def scheduled_status_update(status_id: str, scheduled_at: str) -> str:
-#     """Reschedule a scheduled status (Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric scheduled-status ID.
-#         scheduled_at: New ISO 8601 datetime string (e.g. '2026-01-01T12:00:00Z').
-#
-#     Returns:
-#         str: JSON with the updated ScheduledStatus object.
-#     """
-#     from datetime import datetime
-#     validate_write()
-#     client = get_client()
-#     return fmt(client.scheduled_status_update(status_id, datetime.fromisoformat(scheduled_at)))
+@mcp.tool()
+def scheduled_status_update(status_id: str, scheduled_at: str) -> str:
+    """Reschedule a scheduled status.
+
+    Args:
+        status_id: Numeric scheduled-status ID.
+        scheduled_at: New ISO 8601 datetime string (e.g. '2026-01-01T12:00:00Z').
+
+    Returns:
+        str: JSON with the updated ScheduledStatus object.
+    """
+    from datetime import datetime
+    validate_write()
+    client = get_client()
+    return fmt(client.scheduled_status_update(id=status_id, scheduled_at=datetime.fromisoformat(scheduled_at)))
 
 
-# @mcp.tool()
-# def scheduled_status_delete(status_id: str) -> str:
-#     """Cancel and delete a scheduled status (Mastodon.py 2.x).
-#
-#     Args:
-#         status_id: Numeric scheduled-status ID.
-#
-#     Returns:
-#         str: JSON confirmation.
-#     """
-#     validate_write()
-#     client = get_client()
-#     client.scheduled_status_delete(status_id)
-#     return fmt({"success": True, "status_id": status_id})
+@mcp.tool()
+def scheduled_status_delete(status_id: str) -> str:
+    """Cancel and delete a scheduled status.
+
+    Args:
+        status_id: Numeric scheduled-status ID.
+
+    Returns:
+        str: JSON confirmation.
+    """
+    validate_write()
+    client = get_client()
+    client.scheduled_status_delete(id=status_id)
+    return fmt({"success": True, "status_id": status_id})
 
 
-# @mcp.tool()
-# def notifications_unread_count() -> str:
-#     """Get the number of unread notifications (Mastodon.py 2.x).
-#
-#     Returns:
-#         str: JSON with 'count' field.
-#     """
-#     client = get_client()
-#     return fmt(client.notifications_unread_count())
+@mcp.tool()
+def notifications_unread_count() -> str:
+    """Get the number of unread notifications.
+
+    Returns:
+        str: JSON with 'count' field.
+    """
+    client = get_client()
+    return fmt(client.notifications_unread_count())
+
+
+# ─── ADDITIONAL TOOLS (Mastodon.py 2.2+) ────────────────────────────────────────
+
+@mcp.tool()
+def account_lookup(acct: str) -> str:
+    """Look up a Mastodon account by its handle (e.g., '@user@instance').
+
+    Args:
+        acct: Account handle.
+
+    Returns:
+        str: JSON with account details.
+    """
+    client = get_client()
+    return fmt(client.account_lookup(acct))
+
+
+@mcp.tool()
+def status_pin(status_id: str) -> str:
+    """Pin a status to the authenticated account's profile.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the pinned status.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.status_pin(id=status_id))
+
+
+@mcp.tool()
+def status_unpin(status_id: str) -> str:
+    """Unpin a status from the authenticated account's profile.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the unpinned status.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unpin(id=status_id))
+
+
+@mcp.tool()
+def status_mute(status_id: str) -> str:
+    """Mute a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the muted status.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.status_mute(id=status_id))
+
+
+@mcp.tool()
+def status_unmute(status_id: str) -> str:
+    """Unmute a status.
+
+    Args:
+        status_id: Numeric status ID.
+
+    Returns:
+        str: JSON with the unmuted status.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.status_unmute(id=status_id))
+
+
+@mcp.tool()
+def tag_follow(hashtag: str) -> str:
+    """Follow a hashtag.
+
+    Args:
+        hashtag: Hashtag name (without # prefix).
+
+    Returns:
+        str: JSON with the tag details.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.tag_follow(hashtag))
+
+
+@mcp.tool()
+def tag_unfollow(hashtag: str) -> str:
+    """Unfollow a hashtag.
+
+    Args:
+        hashtag: Hashtag name (without # prefix).
+
+    Returns:
+        str: JSON with the tag details.
+    """
+    validate_write()
+    client = get_client()
+    return fmt(client.tag_unfollow(hashtag))
 
 
 # ─── MAIN ────────────────────────────────────────────────────────────────────

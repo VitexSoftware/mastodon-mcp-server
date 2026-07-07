@@ -99,6 +99,11 @@ EXPECTED_TOOLS = [
     "mutes", "blocks",
     "media_post",
     "directory",
+    "status_update", "status_history", "status_source", "status_translate",
+    "conversations", "scheduled_statuses", "scheduled_status_update",
+    "scheduled_status_delete", "notifications_unread_count",
+    "account_lookup", "status_pin", "status_unpin", "status_mute",
+    "status_unmute", "tag_follow", "tag_unfollow",
 ]
 
 # Support both bundled _mcp.FastMCP (has _tool_definitions) and fastmcp (has list_tools)
