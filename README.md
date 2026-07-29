@@ -1,3 +1,6 @@
+![Packaging: deb](https://img.shields.io/badge/packaging-.deb-red?logo=debian&logoColor=white)
+
+
 <p align="center">
   <img src="mastodon-mcp.svg" alt="mastodon-mcp-server" width="128">
 </p>
