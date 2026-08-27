@@ -1,3 +1,11 @@
+mastodon-mcp-server (1.0.2-1) unstable; urgency=medium
+
+  * Add companion package mcprack-mcp-server-mastodon: registers
+    mastodon-mcp-server into the local mcprack MCP catalog on install
+    (postinst) and unregisters it on removal (prerm).
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 27 Aug 2026 09:26:21 +0200
+
 mastodon-mcp-server (1.0.1-1) unstable; urgency=medium
 
   * Replace fastmcp dependency with bundled stdlib-only MCP implementation
