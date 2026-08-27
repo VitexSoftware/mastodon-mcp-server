@@ -57,7 +57,7 @@ cp .env.example .env
 | ----------------------------- | -------- | ----------- | -------------------------------------------------------------------------------- |
 | `MASTODON_INSTANCE`           | yes      | —           | Mastodon instance URL (e.g. `https://mastodon.social` or just `mastodon.social`) |
 | `MASTODON_ACCESS_TOKEN`       | yes      | —           | OAuth access token                                                               |
-| `READ_ONLY`                   | no       | `false`     | Disable all write operations                                                     |
+| `READ_ONLY`                   | no       | `true`      | Disable all write operations                                                     |
 | `MASTODON_MCP_TRANSPORT`      | no       | `stdio`     | Transport: `stdio` or `streamable-http`                                          |
 | `MASTODON_MCP_HOST`           | no       | `127.0.0.1` | HTTP transport bind address                                                      |
 | `MASTODON_MCP_PORT`           | no       | `8000`      | HTTP transport port                                                              |
@@ -161,7 +161,7 @@ Environment variables:
   MASTODON_MCP_HOST          HTTP bind address (default: 127.0.0.1)
   MASTODON_MCP_PORT          HTTP port (default: 8000)
   MASTODON_MCP_STATELESS_HTTP  Disable HTTP session state (default: false)
-  READ_ONLY                  Restrict to read-only operations (default: false)
+  READ_ONLY                  Restrict to read-only operations (default: true)
   DEBUG                      Enable verbose logging (default: false)
 ```
 

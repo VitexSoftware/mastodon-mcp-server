@@ -55,7 +55,7 @@ def get_client() -> Mastodon:
 
 
 def is_read_only() -> bool:
-    return os.getenv("READ_ONLY", "false").lower() in ("true", "1", "yes")
+    return os.getenv("READ_ONLY", "true").lower() in ("true", "1", "yes")
 
 
 def validate_write() -> None:
@@ -1158,7 +1158,7 @@ Environment variables:
   MASTODON_MCP_HOST          HTTP bind address (default: 127.0.0.1)
   MASTODON_MCP_PORT          HTTP port (default: 8000)
   MASTODON_MCP_STATELESS_HTTP  Disable HTTP session state (default: false)
-  READ_ONLY                  Restrict to read-only operations (default: false)
+  READ_ONLY                  Restrict to read-only operations (default: true)
   DEBUG                      Enable verbose logging (default: false)
 
 Examples:
