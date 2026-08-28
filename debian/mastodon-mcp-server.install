@@ -1,2 +1,2 @@
-mastodon-mcp-server.metainfo.xml usr/share/metainfo/
+debian/mastodon-mcp-server.metainfo.xml usr/share/metainfo/
 mastodon-mcp-server.svg	usr/share/icons/hicolor/scalable/apps/

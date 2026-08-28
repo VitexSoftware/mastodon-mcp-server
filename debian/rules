@@ -7,8 +7,3 @@ export PYBUILD_NAME=mastodon-mcp-server
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/mastodon-mcp-server
-
-override_dh_install:
-	dh_install
-	install -D -m 644 mastodon-mcp.svg \
-		debian/mastodon-mcp-server/usr/share/icons/hicolor/scalable/apps/mastodon-mcp-server.svg
