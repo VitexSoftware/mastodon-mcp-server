@@ -14,6 +14,7 @@ setup(
     install_requires=[
         "Mastodon.py>=2.0.1",
         "python-dotenv>=1.0.1",
+        "langdetect>=1.0.9",
     ],
     entry_points={
         "console_scripts": [

@@ -54,7 +54,9 @@ print("1. Module import")
 print("=" * 60)
 
 try:
-    from mastodon_mcp_server.server import mcp, get_client, fmt, is_read_only, validate_write
+    from mastodon_mcp_server.server import (
+        mcp, get_client, fmt, is_read_only, validate_write, detect_language,
+    )
     ok("mastodon_mcp_server.server imported")
 except Exception as e:
     fail(f"Import failed: {e}")
@@ -172,6 +174,22 @@ except ValueError:
     ok("validate_write() raises ValueError in read-only mode")
 finally:
     os.environ["READ_ONLY"] = "false"
+
+# detect_language
+if detect_language("Ahoj, jak se máš? Toto je test v češtině.") == "cs":
+    ok("detect_language() detects Czech")
+else:
+    fail("detect_language() failed to detect Czech")
+
+if detect_language("Hello, this is a short test message in English.") == "en":
+    ok("detect_language() detects English")
+else:
+    fail("detect_language() failed to detect English")
+
+if detect_language("") is None:
+    ok("detect_language() returns None for empty text")
+else:
+    fail("detect_language('') should return None")
 
 print()
 

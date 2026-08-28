@@ -18,6 +18,7 @@ from typing import Any, Dict, List, Optional
 from mastodon_mcp_server._mcp import FastMCP
 from mastodon import Mastodon, MastodonError
 from dotenv import load_dotenv
+from langdetect import detect, LangDetectException
 
 load_dotenv()
 
@@ -65,6 +66,22 @@ def validate_write() -> None:
 
 def fmt(data: Any) -> str:
     return json.dumps(data, indent=2, default=str, ensure_ascii=False)
+
+
+def detect_language(text: str) -> Optional[str]:
+    """Best-effort ISO 639-1 language detection for status text.
+
+    Returns None if detection isn't possible (empty input, or the
+    detector's own failure) so callers can fall back to Mastodon's
+    default behavior.
+    """
+    stripped = text.strip()
+    if not stripped:
+        return None
+    try:
+        return detect(stripped)
+    except LangDetectException:
+        return None
 
 
 # ─── INSTANCE ────────────────────────────────────────────────────────────────
@@ -430,7 +447,8 @@ def status_post(
         spoiler_text: Content warning / spoiler text shown before the status.
         in_reply_to_id: Numeric ID of the status to reply to.
         sensitive: Mark media as sensitive (default False).
-        language: ISO 639-1 language code (e.g. 'en', 'cs').
+        language: ISO 639-1 language code (e.g. 'en', 'cs'). If omitted, the
+            language is auto-detected from 'status'/'content'.
         media_ids: List of media attachment IDs to attach.
 
     Returns:
@@ -440,6 +458,9 @@ def status_post(
     text = status if status is not None else content
     if not text:
         raise ValueError("Either 'status' or 'content' must be provided")
+
+    if language is None:
+        language = detect_language(text)
 
     client = get_client()
     return fmt(client.status_post(
