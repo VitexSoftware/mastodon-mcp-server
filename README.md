@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="mastodon-mcp.svg" alt="mastodon-mcp-server" width="128">
+  <img src="mastodon-mcp-server.svg" alt="mastodon-mcp-server" width="128">
 </p>
 
 # mastodon-mcp-server
