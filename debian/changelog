@@ -1,3 +1,15 @@
+mastodon-mcp-server (1.0.4-1) unstable; urgency=medium
+
+  * Fix: status_post now auto-detects the post's language when the
+    caller doesn't supply one, instead of leaving posts untagged and
+    falling back to the account's default (previously always
+    "english" even for non-English text, e.g. Czech).
+  * Consolidate duplicate project icons into a single
+    mastodon-mcp-server.svg and remove the now-redundant standalone
+    metainfo.xml.
+
+ -- vitex <info@vitexsoftware.cz>  Fri, 28 Aug 2026 22:37:25 +0200
+
 mastodon-mcp-server (1.0.3-1) unstable; urgency=medium
 
   * Security fix: READ_ONLY now defaults to true (fail-closed). It

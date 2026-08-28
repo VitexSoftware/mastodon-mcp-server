@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mastodon-mcp-server",
-    version="1.0.1",
+    version="1.0.4",
     description="A comprehensive MCP server for Mastodon integration",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",

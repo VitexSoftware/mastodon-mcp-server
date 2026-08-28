@@ -1,6 +1,6 @@
 [project]
 name = "mastodon-mcp-server"
-version = "1.0.1"
+version = "1.0.4"
 description = "A comprehensive MCP server for Mastodon integration"
 readme = "README.md"
 license = {text = "MIT"}
