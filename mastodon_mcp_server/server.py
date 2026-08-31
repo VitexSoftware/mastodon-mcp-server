@@ -86,7 +86,7 @@ def detect_language(text: str) -> Optional[str]:
 
 # ─── INSTANCE ────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def instance_info() -> str:
     """Get information about the connected Mastodon instance.
 
@@ -99,7 +99,7 @@ def instance_info() -> str:
 
 # ─── ACCOUNT ─────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_verify() -> str:
     """Get the authenticated account's own profile.
 
@@ -110,7 +110,7 @@ def account_verify() -> str:
     return fmt(client.account_verify_credentials())
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_get(account_id: str) -> str:
     """Get a Mastodon account by its numeric ID.
 
@@ -124,7 +124,7 @@ def account_get(account_id: str) -> str:
     return fmt(client.account(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_search(query: str, limit: int = 10, resolve: bool = False) -> str:
     """Search for accounts by username or display name.
 
@@ -140,7 +140,7 @@ def account_search(query: str, limit: int = 10, resolve: bool = False) -> str:
     return fmt(client.account_search(query, limit=limit, resolve=resolve))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_statuses(
     account_id: str,
     limit: int = 20,
@@ -170,7 +170,7 @@ def account_statuses(
     ))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_followers(account_id: str, limit: int = 40) -> str:
     """Get followers of an account.
 
@@ -185,7 +185,7 @@ def account_followers(account_id: str, limit: int = 40) -> str:
     return fmt(client.account_followers(account_id, limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_following(account_id: str, limit: int = 40) -> str:
     """Get accounts that a given account follows.
 
@@ -200,7 +200,7 @@ def account_following(account_id: str, limit: int = 40) -> str:
     return fmt(client.account_following(account_id, limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_follow(account_id: str) -> str:
     """Follow an account.
 
@@ -215,7 +215,7 @@ def account_follow(account_id: str) -> str:
     return fmt(client.account_follow(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_unfollow(account_id: str) -> str:
     """Unfollow an account.
 
@@ -230,7 +230,7 @@ def account_unfollow(account_id: str) -> str:
     return fmt(client.account_unfollow(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_mute(account_id: str) -> str:
     """Mute an account.
 
@@ -245,7 +245,7 @@ def account_mute(account_id: str) -> str:
     return fmt(client.account_mute(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_unmute(account_id: str) -> str:
     """Unmute an account.
 
@@ -260,7 +260,7 @@ def account_unmute(account_id: str) -> str:
     return fmt(client.account_unmute(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_block(account_id: str) -> str:
     """Block an account.
 
@@ -275,7 +275,7 @@ def account_block(account_id: str) -> str:
     return fmt(client.account_block(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_unblock(account_id: str) -> str:
     """Unblock an account.
 
@@ -290,7 +290,7 @@ def account_unblock(account_id: str) -> str:
     return fmt(client.account_unblock(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_relationships(account_ids: List[str]) -> str:
     """Get the authenticated user's relationship to one or more accounts.
 
@@ -304,7 +304,7 @@ def account_relationships(account_ids: List[str]) -> str:
     return fmt(client.account_relationships(account_ids))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def account_update(
     display_name: Optional[str] = None,
     note: Optional[str] = None,
@@ -338,7 +338,7 @@ def account_update(
 
 # ─── TIMELINE ─────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def timeline_home(limit: int = 20) -> str:
     """Get the authenticated user's home timeline.
 
@@ -352,7 +352,7 @@ def timeline_home(limit: int = 20) -> str:
     return fmt(client.timeline_home(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def timeline_local(limit: int = 20) -> str:
     """Get the local (instance) public timeline.
 
@@ -366,7 +366,7 @@ def timeline_local(limit: int = 20) -> str:
     return fmt(client.timeline_local(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def timeline_public(limit: int = 20, remote: bool = False) -> str:
     """Get the federated public timeline.
 
@@ -381,7 +381,7 @@ def timeline_public(limit: int = 20, remote: bool = False) -> str:
     return fmt(client.timeline_public(limit=limit, remote=remote))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def timeline_hashtag(hashtag: str, limit: int = 20, local: bool = False) -> str:
     """Get statuses with a specific hashtag.
 
@@ -399,7 +399,7 @@ def timeline_hashtag(hashtag: str, limit: int = 20, local: bool = False) -> str:
 
 # ─── STATUSES ────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_get(status_id: str) -> str:
     """Get a single status by ID.
 
@@ -413,7 +413,7 @@ def status_get(status_id: str) -> str:
     return fmt(client.status(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_context(status_id: str) -> str:
     """Get ancestors and descendants of a status (thread context).
 
@@ -427,7 +427,7 @@ def status_context(status_id: str) -> str:
     return fmt(client.status_context(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=False, open_world_hint=True)
 def status_post(
     status: Optional[str] = None,
     content: Optional[str] = None,
@@ -474,7 +474,7 @@ def status_post(
     ))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def status_delete(status_id: str) -> str:
     """Delete a status posted by the authenticated account.
 
@@ -489,7 +489,7 @@ def status_delete(status_id: str) -> str:
     return fmt(client.status_delete(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_favourite(status_id: str) -> str:
     """Favourite (like) a status.
 
@@ -504,7 +504,7 @@ def status_favourite(status_id: str) -> str:
     return fmt(client.status_favourite(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_unfavourite(status_id: str) -> str:
     """Remove a favourite from a status.
 
@@ -519,7 +519,7 @@ def status_unfavourite(status_id: str) -> str:
     return fmt(client.status_unfavourite(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_reblog(status_id: str, visibility: str = "public") -> str:
     """Reblog (boost) a status.
 
@@ -535,7 +535,7 @@ def status_reblog(status_id: str, visibility: str = "public") -> str:
     return fmt(client.status_reblog(status_id, visibility=visibility))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_unreblog(status_id: str) -> str:
     """Remove a reblog (unboost) of a status.
 
@@ -550,7 +550,7 @@ def status_unreblog(status_id: str) -> str:
     return fmt(client.status_unreblog(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_bookmark(status_id: str) -> str:
     """Bookmark a status.
 
@@ -565,7 +565,7 @@ def status_bookmark(status_id: str) -> str:
     return fmt(client.status_bookmark(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_unbookmark(status_id: str) -> str:
     """Remove a bookmark from a status.
 
@@ -580,7 +580,7 @@ def status_unbookmark(status_id: str) -> str:
     return fmt(client.status_unbookmark(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_favourited_by(status_id: str) -> str:
     """Get accounts that favourited a status.
 
@@ -594,7 +594,7 @@ def status_favourited_by(status_id: str) -> str:
     return fmt(client.status_favourited_by(status_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def status_reblogged_by(status_id: str) -> str:
     """Get accounts that reblogged a status.
 
@@ -610,7 +610,7 @@ def status_reblogged_by(status_id: str) -> str:
 
 # ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def notifications_get(
     limit: int = 20,
     exclude_types: Optional[List[str]] = None,
@@ -632,7 +632,7 @@ def notifications_get(
     return fmt(client.notifications(**kwargs))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def notification_dismiss(notification_id: str) -> str:
     """Dismiss (clear) a single notification.
 
@@ -648,7 +648,7 @@ def notification_dismiss(notification_id: str) -> str:
     return fmt({"success": True, "notification_id": notification_id})
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def notifications_clear() -> str:
     """Dismiss all notifications for the authenticated account.
 
@@ -663,7 +663,7 @@ def notifications_clear() -> str:
 
 # ─── SEARCH ──────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def search(
     query: str,
     resolve: bool = False,
@@ -698,7 +698,7 @@ def search(
 
 # ─── TRENDING ─────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def trending_tags(limit: int = 10) -> str:
     """Get trending hashtags on the instance.
 
@@ -712,7 +712,7 @@ def trending_tags(limit: int = 10) -> str:
     return fmt(client.trending_tags(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def trending_statuses(limit: int = 20) -> str:
     """Get trending statuses on the instance.
 
@@ -726,7 +726,7 @@ def trending_statuses(limit: int = 20) -> str:
     return fmt(client.trending_statuses(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def trending_links(limit: int = 10) -> str:
     """Get trending links (articles) on the instance.
 
@@ -742,7 +742,7 @@ def trending_links(limit: int = 10) -> str:
 
 # ─── FAVOURITES & BOOKMARKS ──────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def favourites(limit: int = 20) -> str:
     """Get statuses favourited by the authenticated account.
 
@@ -756,7 +756,7 @@ def favourites(limit: int = 20) -> str:
     return fmt(client.favourites(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def bookmarks(limit: int = 20) -> str:
     """Get statuses bookmarked by the authenticated account.
 
@@ -772,7 +772,7 @@ def bookmarks(limit: int = 20) -> str:
 
 # ─── LISTS ───────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def lists_get() -> str:
     """Get all lists created by the authenticated account.
 
@@ -783,7 +783,7 @@ def lists_get() -> str:
     return fmt(client.lists())
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def list_accounts(list_id: str, limit: int = 40) -> str:
     """Get accounts in a specific list.
 
@@ -798,7 +798,7 @@ def list_accounts(list_id: str, limit: int = 40) -> str:
     return fmt(client.list_accounts(list_id, limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=False, open_world_hint=True)
 def list_create(title: str, replies_policy: str = "list") -> str:
     """Create a new list.
 
@@ -814,7 +814,7 @@ def list_create(title: str, replies_policy: str = "list") -> str:
     return fmt(client.list_create(title, replies_policy=replies_policy))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def list_delete(list_id: str) -> str:
     """Delete a list.
 
@@ -830,7 +830,7 @@ def list_delete(list_id: str) -> str:
     return fmt({"success": True, "list_id": list_id})
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def list_accounts_add(list_id: str, account_ids: List[str]) -> str:
     """Add accounts to a list.
 
@@ -847,7 +847,7 @@ def list_accounts_add(list_id: str, account_ids: List[str]) -> str:
     return fmt({"success": True, "list_id": list_id, "added": account_ids})
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def list_accounts_delete(list_id: str, account_ids: List[str]) -> str:
     """Remove accounts from a list.
 
@@ -866,7 +866,7 @@ def list_accounts_delete(list_id: str, account_ids: List[str]) -> str:
 
 # ─── POLLS ───────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=False, open_world_hint=True)
 def poll_vote(poll_id: str, choices: List[int]) -> str:
     """Vote in a poll.
 
@@ -884,7 +884,7 @@ def poll_vote(poll_id: str, choices: List[int]) -> str:
 
 # ─── FOLLOW REQUESTS ─────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def follow_requests(limit: int = 40) -> str:
     """Get pending follow requests for the authenticated account.
 
@@ -898,7 +898,7 @@ def follow_requests(limit: int = 40) -> str:
     return fmt(client.follow_requests(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def follow_request_authorize(account_id: str) -> str:
     """Approve a follow request.
 
@@ -913,7 +913,7 @@ def follow_request_authorize(account_id: str) -> str:
     return fmt(client.follow_request_authorize(account_id))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 def follow_request_reject(account_id: str) -> str:
     """Reject a follow request.
 
@@ -930,7 +930,7 @@ def follow_request_reject(account_id: str) -> str:
 
 # ─── MUTES & BLOCKS ──────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def mutes(limit: int = 40) -> str:
     """Get accounts muted by the authenticated account.
 
@@ -944,7 +944,7 @@ def mutes(limit: int = 40) -> str:
     return fmt(client.mutes(limit=limit))
 
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def blocks(limit: int = 40) -> str:
     """Get accounts blocked by the authenticated account.
 
@@ -960,7 +960,7 @@ def blocks(limit: int = 40) -> str:
 
 # ─── MEDIA ───────────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=False, destructive_hint=False, idempotent_hint=False, open_world_hint=True)
 def media_post(file_path: str, description: Optional[str] = None) -> str:
     """Upload a media file (image, video, audio) to Mastodon.
 
@@ -979,7 +979,7 @@ def media_post(file_path: str, description: Optional[str] = None) -> str:
 
 # ─── DIRECTORY ───────────────────────────────────────────────────────────────
 
-@mcp.tool()
+@mcp.tool(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
 def directory(
     limit: int = 20,
     order: str = "active",

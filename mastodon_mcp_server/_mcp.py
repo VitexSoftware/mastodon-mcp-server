@@ -57,10 +57,26 @@ class FastMCP:
     def __init__(self, name: str):
         self.name = name
         self._tools: Dict[str, Callable] = {}
+        self._annotations: Dict[str, Dict[str, bool]] = {}
 
-    def tool(self):
+    def tool(
+        self,
+        *,
+        read_only_hint: bool,
+        destructive_hint: bool,
+        idempotent_hint: bool,
+        open_world_hint: bool,
+    ):
+        annotations = {
+            "readOnlyHint": read_only_hint,
+            "destructiveHint": destructive_hint,
+            "idempotentHint": idempotent_hint,
+            "openWorldHint": open_world_hint,
+        }
+
         def decorator(func: Callable) -> Callable:
             self._tools[func.__name__] = func
+            self._annotations[func.__name__] = annotations
             return func
         return decorator
 
@@ -87,7 +103,12 @@ class FastMCP:
             input_schema: Dict[str, Any] = {"type": "object", "properties": properties}
             if required:
                 input_schema["required"] = required
-            result.append({"name": name, "description": short_desc, "inputSchema": input_schema})
+            result.append({
+                "name": name,
+                "description": short_desc,
+                "inputSchema": input_schema,
+                "annotations": self._annotations[name],
+            })
         return result
 
     def _handle(self, request: dict) -> Optional[dict]:
