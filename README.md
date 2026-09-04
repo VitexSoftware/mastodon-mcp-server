@@ -1,4 +1,5 @@
 ![Packaging: deb](https://img.shields.io/badge/packaging-.deb-red?logo=debian&logoColor=white)
+[![M8ven Score](https://m8ven.ai/badge/mcp/vitexsoftware-mastodon-mcp-server-1x4fu4)](https://m8ven.ai/mcp/vitexsoftware-mastodon-mcp-server-1x4fu4)
 
 
 <p align="center">
