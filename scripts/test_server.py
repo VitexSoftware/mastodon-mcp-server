@@ -63,10 +63,10 @@ except Exception as e:
     sys.exit(1)
 
 try:
-    from mastodon_mcp_server._mcp import FastMCP
-    ok("mastodon_mcp_server._mcp (stdlib FastMCP) imported")
+    from fastmcp import FastMCP
+    ok("fastmcp.FastMCP imported")
 except Exception as e:
-    fail(f"_mcp import failed: {e}")
+    fail(f"fastmcp import failed: {e}")
 
 print()
 
@@ -103,12 +103,8 @@ EXPECTED_TOOLS = [
     "directory",
 ]
 
-# Support both bundled _mcp.FastMCP (has _tool_definitions) and fastmcp (has list_tools)
-if hasattr(mcp, "list_tools"):
-    tools = asyncio.run(mcp.list_tools())
-    tool_names = {t.name for t in tools}
-else:
-    tool_names = {t["name"] for t in mcp._tool_definitions()}
+tools = asyncio.run(mcp.list_tools())
+tool_names = {t.name for t in tools}
 
 for name in EXPECTED_TOOLS:
     if name in tool_names:
