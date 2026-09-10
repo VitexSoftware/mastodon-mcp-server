@@ -1,6 +1,6 @@
 [project]
 name = "mastodon-mcp-server"
-version = "1.0.4"
+version = "1.0.5"
 description = "A comprehensive MCP server for Mastodon integration"
 readme = "README.md"
 license = {text = "MIT"}
@@ -22,6 +22,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
+    "fastmcp>=2.0.0",
     "Mastodon.py>=2.0.1",
     "python-dotenv>=1.0.1",
     "langdetect>=1.0.9",

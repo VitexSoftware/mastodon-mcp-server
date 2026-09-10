@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mastodon-mcp-server",
-    version="1.0.4",
+    version="1.0.5",
     description="A comprehensive MCP server for Mastodon integration",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -12,6 +12,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
+        "fastmcp>=2.0.0",
         "Mastodon.py>=2.0.1",
         "python-dotenv>=1.0.1",
         "langdetect>=1.0.9",

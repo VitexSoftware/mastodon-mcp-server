@@ -1,3 +1,17 @@
+mastodon-mcp-server (1.0.5-1) unstable; urgency=medium
+
+  * Fix: replace the hand-rolled minimal MCP JSON-RPC implementation
+    (mastodon_mcp_server/_mcp.py, frozen at protocol version
+    2024-11-05) with the real fastmcp SDK, matching every other
+    VitexSoftware MCP server. The homemade tools/list response was
+    missing fields required by newer MCP wire revisions (cacheScope,
+    resultType, ttlMs), which made fastmcp-based aggregators such as
+    mcprack reject the whole tool list even though the server itself
+    was reachable and healthy.
+  * Add python3-fastmcp (>= 2.0.0) as a dependency.
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 10 Sep 2026 22:15:00 +0200
+
 mastodon-mcp-server (1.0.4-1) unstable; urgency=medium
 
   * Fix: status_post now auto-detects the post's language when the

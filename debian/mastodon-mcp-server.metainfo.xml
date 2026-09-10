@@ -37,6 +37,11 @@
     <binary>mastodon-mcp</binary>
   </provides>
   <releases>
+    <release version="1.0.5" date="2026-09-10">
+      <description>
+        <p>Switch back to the fastmcp SDK (matching every other VitexSoftware MCP server), fixing tools/list responses being rejected by fastmcp-based aggregators such as mcprack.</p>
+      </description>
+    </release>
     <release version="1.0.1" date="2026-04-30">
       <description>
         <p>Replace fastmcp dependency with bundled stdlib-only MCP implementation.</p>
